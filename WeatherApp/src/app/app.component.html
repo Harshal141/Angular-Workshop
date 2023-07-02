@@ -1,3 +1,8 @@
+<div class="container-error" *ngIf="fetchError">
+  <h1 class="temp">Error Fetching Data</h1>
+  <br>
+  <p class="location">Daily Limit expired Maybe...</p>
+</div>
 <div class="container" *ngIf="weatherData">
   <div class="upper-data">
     <img src="../assets/hot.jpg" *ngIf=" weatherData.main.temp > 15 " alt="">
@@ -17,14 +22,14 @@
         <img src="../assets/temperature-low-solid.svg" alt="">
         <div class="data">
           <p>min</p>
-          <div class="block-value">{{weatherData.main.temp_min}}℃</div>
+          <div class="block-value">{{weatherData.main.temp_min  | number:'1.0-0'}}℃</div>
         </div>
       </div>
       <div class="block">
         <img src="../assets/temperature-high-solid.svg" alt="">
         <div class="data">
           <p>max</p>
-          <div class="block-value">{{weatherData.main.temp_max}}℃</div>
+          <div class="block-value">{{weatherData.main.temp_max | number:'1.0-0' }}℃</div>
         </div>
       </div>
       <div class="block">
