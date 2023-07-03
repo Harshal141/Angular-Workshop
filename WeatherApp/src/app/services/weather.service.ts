@@ -28,8 +28,7 @@ export class WeatherService {
       // Handle the error here
       // You can display the error message or take appropriate action
       // For example, you can throw a custom error or return a default weather data object
-      const errorMessage = 'Failed to fetch weather data.';
-      return throwError(errorMessage);
+      return throwError(error);
     })
     );
   }

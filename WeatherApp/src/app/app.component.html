@@ -1,12 +1,20 @@
+
 <div class="container-error" *ngIf="fetchError">
   <h1 class="temp">Error Fetching Data</h1>
   <br>
-  <p class="location">Daily Limit expired Maybe...</p>
+  <p class="location">{{errorMessage}}</p>
 </div>
-<div class="container" *ngIf="weatherData">
+
+
+
+<br>
+<div class="n-container" *ngIf="weatherData && !fetchError">
+  <!-- <div class="main-search-input-wrap"> 
+    
+  </div> -->
   <div class="upper-data">
-    <img src="../assets/hot.jpg" *ngIf=" weatherData.main.temp > 15 " alt="">
-    <img src="../assets/1261770.jpg" *ngIf="weatherData.main.temp <= 15" alt="">
+    <img src="../assets/hot.jpg" *ngIf="weatherData.main.temp" alt="">
+    <img src="../assets/1261770.jpg" *ngIf="weatherData.main.temp" alt="">
     
     <div class="weather-data">
       <div class="location">{{weatherData.name }}</div>
@@ -15,14 +23,18 @@
   </div>
   <div class="lower-data">
     <div class="more-info">
-      more information
+      <form class="weather-form" #form="ngForm" (ngSubmit)="onSubmit()">
+        <div class="w-100 px-5">
+            <input type="text"  class="form-control" placeholder="Search City..." name="cityName" [(ngModel)]="cityName">
+        </div> 
+      </form>
     </div>
     <div class="blocks">
       <div class="block">
         <img src="../assets/temperature-low-solid.svg" alt="">
         <div class="data">
           <p>min</p>
-          <div class="block-value">{{weatherData.main.temp_min  | number:'1.0-0'}}℃</div>
+          <div class="block-value">{{weatherData.main.temp_min | number:'1.0-0'}}℃</div>
         </div>
       </div>
       <div class="block">

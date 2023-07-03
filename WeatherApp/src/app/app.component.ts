@@ -13,14 +13,25 @@ export class AppComponent implements OnInit{
 
   weatherData?: WeatherData;
   fetchError?: boolean = false;
+  cityName: string = 'pune';
+  errorMessage?: string = 'Error Occured';
   ngOnInit(): void {
-    this.weatherService.getWeatherData('Pune').subscribe({
+    this.getData(this.cityName);
+    this.cityName='';
+  }
+  onSubmit(){
+    this.getData(this.cityName);
+    this.cityName='';
+  }
+  private getData(cityName: string){
+    this.weatherService.getWeatherData(cityName).subscribe({
       next: (response)=>{
         this.weatherData = response;
         console.log(response)
       },
       error: (error)=>{
         this.fetchError = true;
+        this.errorMessage = error.error.message;
         console.log('Error Occured')
         console.log(error)
       }
