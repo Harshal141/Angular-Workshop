@@ -1,0 +1,15 @@
+name: 'get env file from secret'
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Check out code into the repository'
+        uses: actions/checkout@v4
+
+      - name: 'Create env file'
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
